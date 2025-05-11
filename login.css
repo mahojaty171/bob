@@ -1,0 +1,129 @@
+/* تنظیمات برای تمام المنت‌ها که از همدیگر فاصله نگیرن و با هم درست کار کنن */
+* {
+    margin: 0; /* فاصله خارجی را صفر می‌کند */
+    padding: 0; /* فاصله داخلی را صفر می‌کند */
+    box-sizing: border-box; /* برای این‌که اندازه‌ها درست محاسبه بشن */
+}
+
+/* استایل برای بدنه صفحه */
+body {
+    display: flex; /* برای تنظیم موقعیت عناصر به صورت افقی و عمودی */
+    justify-content: center; /* برای قرار دادن محتوا در وسط افقی */
+    align-items: center; /* برای قرار دادن محتوا در وسط عمودی */
+    min-height: 100vh; /* ارتفاع صفحه به اندازه 100% از صفحه نمایش */
+    background: url('images/4.png'); /* تصویر پس‌زمینه */
+    background-size: cover; /* تصویر پس‌زمینه به اندازه صفحه کشیده می‌شود */
+    background-position: center; /* تصویر در وسط صفحه قرار می‌گیرد */
+}
+
+/* تنظیمات برای فرم لاگین */
+.wrapper {
+    width: 420px; /* عرض فرم */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: 2px solid rgba(255, 255, 255, .2); /* حاشیه با رنگ سفید نیمه شفاف */
+    backdrop-filter: blur(20px); /* اضافه کردن افکت محو کردن پس‌زمینه */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2); /* سایه برای برجسته کردن فرم */
+    color: #fff; /* رنگ متن سفید */
+    border-radius: 10px; /* گوشه‌های گرد */
+    padding: 30px 40px; /* فاصله داخلی */
+}
+
+/* عنوان فرم */
+.wrapper h1 {
+    font-size: 36px; /* اندازه متن */
+    text-align: center; /* متن در وسط قرار می‌گیرد */
+}
+
+/* استایل برای قسمت ورودی اطلاعات (input) */
+.input-box {
+    position: relative; /* موقعیت نسبی برای استفاده از عناصر داخل آن */
+    width: 100%; /* عرض 100% از فضای والد */
+    height: 50px; /* ارتفاع 50 پیکسل */
+    margin: 30px 0; /* فاصله بالا و پایین */
+}
+
+/* تنظیمات برای خود input */
+.input-box input {
+    width: 100%; /* عرض 100% از فضای والد */
+    height: 100%; /* ارتفاع 100% */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: none; /* بدون حاشیه */
+    outline: none; /* بدون حاشیه هنگام فوکوس */
+    border: 2px solid rgba(255,255,255, .2); /* حاشیه سفید نیمه شفاف */
+    border-radius: 40px; /* گوشه‌های گرد */
+    color: #fff; /* رنگ متن سفید */
+    padding: 20px 45px 20px 20px; /* فاصله داخلی */
+}
+
+/* تنظیمات برای placeholder داخل input */
+.input-box input::placeholder {
+    color: #fff; /* رنگ متن placeholder سفید */
+}
+
+/* استایل آیکن داخل input (مثلاً آیکن چشم برای پسورد) */
+.input-box i {
+    position: absolute; /* موقعیت مطلق برای قرار دادن در داخل input */
+    right: 20px; /* فاصله از سمت راست */
+    top: 50%; /* قرار دادن در وسط عمودی */
+    transform: translateY(-50%); /* تنظیم دقیق عمودی */
+    font-size: 20px; /* اندازه آیکن */
+}
+
+/* استایل برای لینک‌های یادآوری و فراموشی */
+.wrapper .rememmber-forgot {
+    display: flex; /* نمایش به صورت خطی */
+    justify-content: space-between; /* فاصله دادن به لینک‌ها */
+    font-size: 14.5px; /* اندازه فونت */
+    margin: -15px 0 15px; /* فاصله بالا و پایین */
+}
+
+/* استایل برای چک‌باکس و لینک‌ها */
+.rememmber-forgot label input {
+    accent-color: #fff; /* رنگ چک‌باکس */
+    margin-right: 3px; /* فاصله از چپ */
+}
+
+/* استایل لینک‌ها */
+.rememmber-forgot a {
+    color: #fff; /* رنگ سفید */
+    text-decoration: none; /* حذف زیرخط */
+}
+
+/* استایل هاور برای لینک‌ها */
+.rememmber-forgot a:hover {
+    text-decoration: underline; /* اضافه کردن زیرخط هنگام هاور */
+}
+
+/* استایل دکمه */
+.wrapper .btn {
+    width: 100%; /* عرض 100% */
+    height: 45px; /* ارتفاع 45 پیکسل */
+    background: #fff; /* پس‌زمینه سفید */
+    border: none; /* بدون حاشیه */
+    outline: none; /* بدون حاشیه */
+    border-radius: 40px; /* گوشه‌های گرد */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1); /* سایه برای برجسته شدن */
+    cursor: pointer; /* نشانگر موس به دست تبدیل می‌شود */
+    font-size: 16px; /* اندازه فونت */
+    color: #333; /* رنگ متن */
+    font-weight: 600; /* وزن فونت */
+}
+
+/* استایل لینک ثبت‌نام */
+.wrapper .register-link {
+    font-size: 14.5px; /* اندازه فونت */
+    text-align: center; /* متن در وسط */
+    margin: 20px 0 15px; /* فاصله بالا و پایین */
+}
+
+/* استایل لینک ثبت‌نام */
+.register-link p a {
+    color: #fff; /* رنگ لینک سفید */
+    text-decoration: none; /* حذف زیرخط */
+    font-weight: 600; /* وزن فونت */
+}
+
+/* استایل هاور برای لینک ثبت‌نام */
+.register-link p a:hover {
+    text-decoration: underline; /* اضافه کردن زیرخط هنگام هاور */
+}
