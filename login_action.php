@@ -1,67 +1,58 @@
 <?php 
-include("includes/header.php"); // هدر سایت
+  include("includes/header.php"); // وارد کردن هدر سایت (شامل منو، استایل‌ها، و غیره)
+?>
 
-// شروع سشن فقط اگه هنوز شروع نشده
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-// گرفتن اطلاعات فرم
-$user = $_POST["user"] ?? '';
-$pass = $_POST["pass"] ?? '';
+<?php 
+// دریافت مقادیر نام کاربری و کلمه عبور از فرم ارسال شده (POST)
+$user = $_POST["user"]; // نام کاربری وارد شده
+$pass = $_POST["pass"]; // کلمه عبور وارد شده
 
 // اتصال به دیتابیس
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 
-// بررسی اتصال
-if (!$link) {
-    die("❌ خطا در اتصال به دیتابیس: " . mysqli_connect_error());
-}
+// جستجو در جدول Users برای پیدا کردن کاربری که نام کاربری و کلمه عبور وارد شده برابر با اطلاعات دیتابیس باشد
+$result = mysqli_query($link, "SELECT * FROM `Users` WHERE UserName='$user' AND PassWord='$pass'");
 
-// جلوگیری از حملات SQL Injection (بهترین روش)
-$user = mysqli_real_escape_string($link, $user);
-$pass = mysqli_real_escape_string($link, $pass);
-
-// اجرای کوئری با بررسی دقیق
-$sql = "SELECT * FROM users WHERE UserName='$user' AND PassWord='$pass'";
-$result = mysqli_query($link, $sql);
-
-// بررسی اجرای کوئری
-if (!$result) {
-    die("❌ خطا در اجرای کوئری: " . mysqli_error($link));
-}
-
-// گرفتن نتیجه
-$row = mysqli_fetch_array($result);
-
-// بستن اتصال
+// بستن ارتباط با دیتابیس بعد از انجام کوئری
 mysqli_close($link);
 
-// بررسی نتیجه
-if ($row) {
-    // ذخیره اطلاعات تو سشن
-    $_SESSION["state_login"] = true;
-    $_SESSION["UserName"] = $row["UserName"]; // ✅ ذخیره نام کاربری
-    $_SESSION["name"] = $row["Name"];
-    $_SESSION["user_type"] = ($row["admin"] == 1) ? "admin" : "public";
+// خواندن نتیجه‌ی کوئری
+$row = mysqli_fetch_array($result);
 
-    // نمایش پیام و هدایت به صفحه اصلی
+// بررسی اینکه آیا کاربر پیدا شده یا نه
+if ($row == true) {
+    // اگر اطلاعات درست باشد، وضعیت ورود را true قرار می‌دهیم (کاربر وارد سیستم شده)
+    $_SESSION["state_login"] = true;
+    $_SESSION["name"] = $row["Name"]; // ذخیره نام کاربری در session
+
+    // بررسی اینکه نوع کاربر عمومی است یا ادمین
+    if ($row["admin"] == 0) {
+        $_SESSION["user_type"] = "public"; // کاربر عمومی
+    } else if ($row["admin"] == 1) {
+        $_SESSION["user_type"] = "admin"; // کاربر ادمین
+    }
+
+    // نمایش پیام خوش‌آمدگویی و انتقال به صفحه اصلی سایت
     ?>
     <div class="alert alert-success" role="alert">
-        <p class="pc">✅ Welcome to your web</p>
+        <p class="pc"> Welcome to your web </p> <!-- پیام خوش آمد گویی -->
     </div>
-    <script>
-        location.replace("index.php");
+    
+    <script type="text/javascript">
+        location.replace("index.php"); // انتقال به صفحه اصلی (index.php)
     </script>
+
     <?php
 } else {
-    // نمایش خطا
+    // اگر اطلاعات وارد شده صحیح نباشد، نمایش پیام خطا
     ?>
     <div class="alert alert-danger" role="alert">
-        <p class="pc">❌ The entered information is not correct</p>
+        <p class="pc">!! The entered information is not correct </p> <!-- پیام خطا -->
     </div>
     <?php
 }
+?>
 
-include("includes/footer.php"); // فوتر سایت
+<?php 
+  include("includes/footer.php"); // وارد کردن فوتر سایت
 ?>

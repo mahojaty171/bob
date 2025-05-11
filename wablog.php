@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 if (!$link) {
     die("خطا در اتصال به دیتابیس: " . mysqli_connect_error());
 }

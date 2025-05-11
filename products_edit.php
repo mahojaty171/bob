@@ -3,12 +3,11 @@
 include("includes/header.php");
 
 # اتصال به دیتابیس با اطلاعات localhost
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
+
 
 # اگه وصل نشد، یه پیام خطا نشون میده و کد رو متوقف می‌کنه
-if (!$link) {
-    die("خطا در اتصال به دیتابیس: " . mysqli_connect_error());
-}
+
 
 # بررسی می‌کنه آیا id داخل URL هست یا نه
 # همچنین چک می‌کنه که مقدارش عددی باشه
@@ -22,7 +21,7 @@ $id = intval($_GET["id"]);
 # ساختن یه کوئری امن برای جلوگیری از SQL Injection
 # از ? استفاده شده که بعداً مقدارش با bind پر میشه
 $query = "SELECT * FROM `products` WHERE ID = ?";
-$stmt = mysqli_prepare($link, $query);  # ##########
+$stmt = mysqli_prepare($link, $query);  # آماده‌سازی کوئری
 mysqli_stmt_bind_param($stmt, "i", $id); # بایند کردن id به کوئری، نوعش عدد صحیحه
 mysqli_stmt_execute($stmt);             # اجرای کوئری
 $result = mysqli_stmt_get_result($stmt); # گرفتن نتیجه اجرای کوئری
@@ -31,7 +30,7 @@ $result = mysqli_stmt_get_result($stmt); # گرفتن نتیجه اجرای کو
 $row = mysqli_fetch_array($result);
 
 # بعد از اینکه نتیجه گرفته شد، اتصال به دیتابیس بسته میشه
-mysqli_close($mysql);
+mysqli_close($link);
 
 # اگه محصولی با این id پیدا بشه، اطلاعاتش توی متغیرها ریخته میشه
 if ($row) {
@@ -78,4 +77,3 @@ if ($row) {
 
 <!-- فایل footer.php هم احتمالاً شامل انتهای HTML و اسکریپت‌هاست -->
 <?php include("includes/footer.php"); ?>
-

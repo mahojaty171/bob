@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // اتصال به دیتابیس
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 if (!$link) {
     die("❌ خطا در اتصال به دیتابیس: " . mysqli_connect_error());
 }

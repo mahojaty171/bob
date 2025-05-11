@@ -1,43 +1,40 @@
 <?php 
-include("includes/header.php"); // گنجاندن هدر سایت
+  include("includes/header.php");  // گنجاندن فایل هدر سایت
 ?>
 
 <?php 
-// گرفتن اطلاعات فرم
-$name  = $_POST["name"] ?? '';
-$pass  = $_POST["pass"] ?? '';
+
+// دریافت اطلاعات ثبت‌نام از فرم
+$name = $_POST["name"];
+$user = $_POST["user"];
+$pass = $_POST["pass"];
+$gmail = $_POST["gmail"];
 
 // اتصال به دیتابیس
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 
-// بررسی اتصال
-if (!$link) {
-    die("❌ خطا در اتصال به دیتابیس: " . mysqli_connect_error());
-}
+// اجرای کوئری INSERT برای ثبت اطلاعات کاربر جدید در جدول Users
+$result = mysqli_query($c, "INSERT INTO `Users` (`Name`, `UserName`, `PassWord`, `Gmail`) VALUES ('$name', '$user', '$pass', '$gmail')");
 
-// اجرای کوئری ثبت کاربر جدید
-$sql = "INSERT INTO users (UserName, password) VALUES ('$name', '$pass')";
-$result = mysqli_query($link, $sql);
-
-// بررسی نتیجه
-if($result){
+// بررسی نتیجه عملیات
+if($result == true){
     ?>
     <div class="alert alert-success" role="alert">
-        <p class="pc">✅ ثبت‌نام شما با موفقیت انجام شد</p>
+        <p class="pc"> ثبت نام شما با موفقیت انجام گردید </p>  // نمایش پیغام موفقیت
     </div>
     <?php
-} else {
+}else{
     ?>
     <div class="alert alert-danger" role="alert">
-        <p class="pc">❌ ثبت‌نام شما با خطا مواجه شد</p>
+        <p class="pc">ثبت نام شما با خطا مواجه شد</p>  // نمایش پیغام خطا در صورت بروز مشکل
     </div>
     <?php
 }
 
-// بستن اتصال
-mysqli_close($link);
+// بستن اتصال به دیتابیس
+mysqli_close($c);
 ?>
 
 <?php 
-include("includes/footer.php"); // گنجاندن فوتر سایت
+  include("includes/footer.php");  // گنجاندن فایل فوتر سایت
 ?>

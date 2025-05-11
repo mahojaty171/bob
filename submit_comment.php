@@ -5,7 +5,7 @@ $username = "root";
 $password = "";
 $dbname = "my_database"; // نام دیتابیس شما
 
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 
 // بررسی اتصال
 if ($conn->connect_error) {

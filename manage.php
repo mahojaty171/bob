@@ -15,7 +15,7 @@ include("includes/header.php");
     <div class="row">
         <?php
         # اتصال به دیتابیس
-        $link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+        $link = mysqli_connect("localhost", "root", "", "bekharino");
         
         # اگه اتصال ناموفق بود، پیام خطا چاپ میشه و اجرای ادامه نمی‌یابه
         if (!$link) {
@@ -55,7 +55,7 @@ include("includes/header.php");
                                 </a>
                                 <!-- لینک حذف محصول با تایید از کاربر -->
                                 <a href="products_delete.php?id=<?php echo $row["ID"]; ?>" 
-                                   class="btn btn-danger"
+                                   class="btn btn-danger" 
                                    onclick="return confirm('آیا از حذف این محصول مطمئن هستید؟')">
                                     <i class="fas fa-trash"></i> حذف
                                 </a>

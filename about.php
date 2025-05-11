@@ -59,7 +59,7 @@
         <div class="box">
             <h2>محمد امین حجتی</h2> <!-- عنوان معرفی مدیر -->
             <p>مدیر و توسعه‌دهنده وبسایت Bekharino</p>
-            <img src="images/6.png" alt="محمد امین حجتی" class="profile-img"> <!-- تصویر مدیر -->
+            <img src="images/4.png" alt="محمد امین حجتی" class="profile-img"> <!-- تصویر مدیر -->
         </div>
     </div>
 

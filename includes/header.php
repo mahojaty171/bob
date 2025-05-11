@@ -35,7 +35,7 @@ session_start(); # سشن رو فعال می‌کنیم
 
         <?php 
         # فقط مدیر لینک‌های مدیریت رو ببینه
-        if (isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true && $_SESSION["name"] === "javad") {
+        if(isset($_SESSION["state_login"]) && $_SESSION["state_login"] == true && $_SESSION["user_type"] == "admin") {
         ?>
           <li class="nav-item me-3">
             <a class="nav-link" href="manage.php">Management</a>

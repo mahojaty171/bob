@@ -2,7 +2,7 @@
 include("includes/header.php");
 
 // اتصال به دیتابیس
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 
 // بررسی اتصال
 if (!$link) {

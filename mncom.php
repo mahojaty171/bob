@@ -1,5 +1,8 @@
 <?php
-$link = mysqli_connect("localhost", "bekhio_root", "n123456", "bekhio_root");
+include("includes/header.php");?>
+
+<?php
+$link = mysqli_connect("localhost", "root", "", "bekharino");
 if (!$link) die("اتصال ناموفق به دیتابیس");
 
 // حذف نظر
